@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+  <script>
+ 	// Your JavaScript goes here!
+ 	let round = 0;
+ 	let compScore = 0;
+ 	let playerScore = 0;
+
+ 	function computePlay(){
+ 		let computerChoice = Math.random();
+ 			if(computerChoice < 0.34){
+ 				return "rock";
+ 			}else if(computerChoice <= 0.67){
+ 				return "paper";
+ 			}else{
+ 				return "scissors";
+ 			}
+ 	}
+
+ 	function playerPlay(playerChoice) {
+		 playerChoice = prompt("Take a pick: Rock, Paper, or Scissors?").toLowerCase();
+		return playerChoice;
+		}
+ 	function playRound(playerSelection, computerSelection){
+ 		if(playerSelection === computerSelection){
+ 			return "The result is a tie!";
+ 		}else if(playerSelection === "rock"){
+ 			if(computerSelection === "scissors"){
+ 				playerScore++;
+ 				return "Your choice rock wins!";
+ 			}else{
+ 				compScore++;
+ 				return "Computer choice paper wins!";
+ 			}
+ 		}else if(playerSelection === "paper"){
+ 			if (computerSelection === "rock") {
+ 				playerScore++;
+ 				return "Your choice paper wins!";
+ 			}else {
+ 				compScore++;
+ 				return "Computer choice scissors wins!";
+ 			}
+ 		}else if(playerSelection === "scissors"){
+ 			if(computerSelection === "rock"){
+ 				compScore++;
+ 				return "Computer choice rock wins!";
+ 			}else{
+ 				playerScore++
+ 				return "Your choice scissors wins!";
+ 			}
+ 		}
+ 	}
+// Game function to play five rounds of playRound
+function game() {
+	while (round < 5) {
+		let computerSelection = computePlay();
+		let playerSelection = playerPlay();
+
+		round++;
+		console.log("ROUND " + round);
+		console.log("You picked: " + playerSelection);
+		console.log("Computer picked: " + computerSelection);
+		console.log(playRound(playerSelection, computerSelection));
+		console.log("CURRENT SCORE = " + "You: " + playerScore + " | " + "Computer: " + compScore);
+	}
+
+	if (round === 5) {
+		console.log("===FINAL SCORE===");
+		console.log("You: " + playerScore);
+		console.log("Computer: " + compScore);
+		if (playerScore > compScore) {
+			return "You won!!!";
+		} else if (playerScore < compScore) {
+			return "You lost !!!";
+		} else {
+			return "It's a draw. Try again!";
+		}
+	}
+
+}
+
+console.log(game());
+
+  </script>
+</body>
+</html>
